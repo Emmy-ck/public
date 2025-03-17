@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBidhaa</title>
+</head>
+<body>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            padding: 10px;
+            max-width: 1400px;
+            margin: 0 auto;
+            min-height: 100vh;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        html, body {
+            height: 100%;
+            width: 100%;
+        }
+        .container {
+            width: 100%;
+            height: 100%;
+            background-image: url(./assets/images/bg.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            width: 400px;
+            height: 500px;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .card h1 {
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .card form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .card form input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+        .card form button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #000;
+            color: #fff;
+            cursor: pointer;
+        }
+        .card form button:hover {
+            background-color: #333;
+        }
+        .card form a {
+            text-decoration: none;
+            color: #000;
+        }
+        .card form a:hover {
+            color: #333;
+        }
+        
+        .marketplace {
+            padding: 2rem;
+            background-color: #F3F3F3;
+        }
+
+        .search-filter {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .search-bar {
+            flex: 1;
+            margin-right: 1rem;
+            padding: 0.5rem;
+            border: 2px solid #622C84;
+            border-radius: 4px;
+        }
+
+        .filter-select {
+            padding: 0.5rem;
+            border: 2px solid #622C84;
+            border-radius: 4px;
+            margin-right: 1rem;
+        }
+
+        .nav-links {
+            background: #622C84;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #FFC107;
+            color: #622C84;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .cart-icon {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #FFC107;
+            padding: 0.5rem;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .cart-icon:hover {
+            background: #622C84;
+            color: white;
+        }
+
+        .price {
+            color: #622C84;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .category-tag {
+            background: #622C84;
+            color: white;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .pagination button {
+            padding: 0.5rem 1rem;
+            border: 2px solid #622C84;
+            background: white;
+            color: #622C84;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .pagination button.active {
+            background: #622C84;
+            color: white;
+        }
+    </style>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <!--                       <img src="./public/images/Logo.jpeg" alt="" style="width: 200px; height: auto;">
+ -->
+                      <img src="./public/images/Logo.jpeg" alt="" style="width: 200px; height: auto;">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="./pages/products.html">Products</a></li>
+                    <li><a href="./pages/services.html">Services</a></li>
+                    <li><a href="./pages/about.html">About</a></li>
+                    <li><a href="./pages/contact.html">Contact</a></li>
+                </ul>
+          </nav>
+            <div class="header-right">
+                <a href="#login" class="login-btn">Login</a>
+                <a href="#signup" class="signup-btn">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-slider">
+        <div class="slider-container">
+            <div class="slide fade">
+                <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6" alt="Books Collection">
+                <div class="slide-content">
+                    <h2>Premium Educational Books</h2>
+                    <p>Find the perfect books for every grade level</p>
+                </div>
+            </div>
+
+            <div class="slide fade">
+                <img src="https://images.unsplash.com/photo-1452860606245-08befc0ff44b" alt="Stationery Items">
+                <div class="slide-content">
+                    <h2>Quality Stationery</h2>
+                    <p>Everything you need for school and office</p>
+                </div>
+            </div>
+
+            <div class="slide fade">
+                <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7" alt="Tutoring Services">
+                <div class="slide-content">
+                    <h2>Expert Tutoring Services</h2>
+                    <p>Connect with qualified tutors for personalized learning</p>
+                </div>
+            </div>
+
+            <a class="prev" onclick="changeSlide(-1)">❮</a>
+            <a class="next" onclick="changeSlide(1)">❯</a>
+        </div>
+        
+        <div class="dots">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+    </div>
+
+    <style>
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo h1 {
+            color: #622C84;
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #622C84;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .login-btn, .signup-btn {
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .login-btn {
+            color: #622C84;
+            border: 2px solid #622C84;
+        }
+
+        .signup-btn {
+            background: #622C84;
+            color: white;
+        }
+
+        .hero-slider {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 100%;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 20%;
+            left: 10%;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .slide-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .prev, .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 1rem;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            background: rgba(0,0,0,0.3);
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .next {
+            right: 1rem;
+        }
+
+        .prev {
+            left: 1rem;
+        }
+
+        .prev:hover, .next:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        .dots {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .dot {
+            cursor: pointer;
+            height: 12px;
+            width: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        .active, .dot:hover {
+            background-color: #622C84;
+        }
+
+        .fade {
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+        @keyframes fade {
+            from {opacity: .4} 
+            to {opacity: 1}
+        }
+    </style>
+
+    <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("slide");
+            let dots = document.getElementsByClassName("dot");
+            
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            
+            slides[slideIndex-1].style.display = "block";
+            dots[slideIndex-1].className += " active";
+        }
+
+        // Auto slide
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+    </script>
+
+    <div class="marketplace">
+        <div class="nav-links">
+            <a href="#books">Books</a>
+            <a href="#stationery">Stationery</a>
+            <a href="#supplies">School Supplies</a>
+            <a href="./tutors.html">Find Tutors</a>
+            <a href="https://store17371.store.link">Catalogue</a>
+            <a href="./pages/cart.html"><span style="color: #FFC107; font-size: 1.2em">🛒</span> Cart (0)</a>
+        </div>
+
+        <div class="search-filter">
+            <input type="search" class="search-bar" placeholder="Search for educational items...">
+            <select class="filter-select">
+                <option value="">Select Grade Level</option>
+                <option value="pp1">PP1</option>
+                <option value="pp2">PP2</option>
+                <option value="grade1">Grade 1</option>
+                <option value="grade2">Grade 2</option>
+                <option value="grade3">Grade 3</option>
+                <option value="grade4">Grade 4</option>
+                <option value="grade5">Grade 5</option>
+                <option value="grade6">Grade 6</option>
+                <option value="grade7">Grade 7</option>
+                <option value="grade8">Grade 8</option>
+                <option value="grade9">Grade 9</option>
+                <option value="highschool">High School</option>
+            </select>
+            <select class="filter-select">
+                <option value="">All Categories</option>
+                <option value="books">Books</option>
+                <option value="stationery">Stationery</option>
+                <option value="supplies">School Supplies</option>
+            </select>
+            <select class="filter-select">
+                <option value="">Price Range</option>
+                <option value="0-50">KES 0 - KES50</option>
+                <option value="51-100">KES 51 - KES100</option>
+                <option value="101+">KES101+</option>
+            </select>
+        </div>
+
+        <div class="products-grid">
+            <!-- Page 1 Sample Products (20 items) -->
+            <div class="product-card">
+                <span class="category-tag">PP1</span>
+                <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c" alt="ABC Book">
+                <div class="cart-icon">🛒</div>
+                <h3>My First ABC Book</h3>
+                <p>Colorful alphabet learning book</p>
+                <span class="price">KES15.99</span>
+            </div>
+
+            <div class="product-card">
+                <span class="category-tag">Grade 3</span>
+                <img src="https://images.unsplash.com/photo-1568205612837-a1b3a87128b8" alt="Math Set">
+                <div class="cart-icon">🛒</div>
+                <h3>Basic Math Kit</h3>
+                <p>Complete mathematics learning set</p>
+                <span class="price">KES24.99</span>
+            </div>
+
+            <div class="product-card">
+                <span class="category-tag">PP2</span>
+                <img src="https://images.unsplash.com/photo-1503676260728-1c00da09c228" alt="Writing Set">
+                <div class="cart-icon">🛒</div>
+                <h3>Writing Practice Set</h3>
+                <p>Early writing skills development kit</p>
+                <span class="price">KES19.99</span>
+            </div>
+
+            <div class="product-card">
+                <span class="category-tag">Grade 1</span>
+                <img src="https://images.unsplash.com/photo-1456735190827-d1262f71b8a3" alt="Art Supplies">
+                <div class="cart-icon">🛒</div>
+                <h3>Creative Art Bundle</h3>
+                <p>Complete art supplies set</p>
+                <span class="price">KES34.99</span>
+            </div>
+
+            <div class="product-card">
+                <span class="category-tag">Grade 2</span>
+                <img src="https://images.unsplash.com/photo-1528938102132-4a9276b8e320" alt="Reading Set">
+                <div class="cart-icon">🛒</div>
+                <h3>Reading Adventure Pack</h3>
+                <p>Comprehensive reading materials</p>
+                <span class="price">KES29.99</span>
+            </div>
+
+            <div class="product-card">
+                <span class="category-tag">Grade 4</span>
+                <img src="https://images.unsplash.com/photo-1516962080544-eac695c93791" alt="Geography Kit">
+                <div class="cart-icon">🛒</div>
+                <h3>World Geography Set</h3>
+                <p>Maps and atlas collection</p>
+                <span class="price">KES45.99</span>
+            </div>
+
+            <div class="product-card">
+                <span class="category-tag">Grade 3</span>
+                <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f" alt="Science Kit">
+                <div class="cart-icon">🛒</div>
+                <h3>Basic Science Kit</h3>
+                <p>Introductory science experiments</p>
+                <span class="price">KES39.99</span>
+            </div>
+
+            <div class="product-card">
+                <span class="category-tag">Grade 5</span>
+                <img src="https://images.unsplash.com/photo-1520869562399-e772f042f422" alt="History Set">
+                <div class="cart-icon">🛒</div>
+                <h3>History Explorer Kit</h3>
+                <p>Interactive history learning</p>
+                <span class="price">KES42.99</span>
+            </div>
+
+            <div class="product-card">
+                <span class="category-tag">PP1</span>
+                <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4" alt="Number Kit">
+                <div class="cart-icon">🛒</div>
+                <h3>Number Learning Set</h3>
+                <p>Early mathematics concepts</p>
+                <span class="price">KES18.99</span>
+            </div>
+
+            <div class="product-card">
+                <span class="category-tag">Grade 6</span>
+                <img src="https://images.unsplash.com/photo-1535572290543-960a8046f5af" alt="Language Kit">
+                <div class="cart-icon">🛒</div>
+                <h3>Advanced Language Set</h3>
+                <p>Comprehensive language tools</p>
+                <span class="price">KES55.99</span>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const paginationButtons = document.querySelectorAll('.pagination button');
+                    const productCards = document.querySelectorAll('.product-card');
+                    
+                    const page2Products = [
+                        {
+                            category: "Grade 7",
+                            image: "",
+                            alt: "Chemistry Set",
+                            title: "Chemistry Master Kit",
+                            description: "Advanced chemistry lab set",
+                            price: "KES 149.99"
+                        },
+                        {
+                            category: "Grade 8",
+                            image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c",
+                            alt: "Biology Kit",
+                            title: "Advanced Biology Set",
+                            description: "Complete biology lab equipment",
+                            price: "KES 169.99"
+                        },
+                        {
+                            category: "Grade 9",
+                            image: "https://images.unsplash.com/photo-1568205612837-a1b3a87128b8",
+                            alt: "Physics Kit",
+                            title: "Physics Lab Kit",
+                            description: "Complete physics equipment",
+                            price: "KES 189.99"
+                        },
+                        {
+                            category: "High School",
+                            image: "https://images.unsplash.com/photo-1535572290543-960a8046f5af",
+                            alt: "Advanced Math",
+                            title: "Advanced Mathematics Set",
+                            description: "Complete calculus kit",
+                            price: "KES 199.99"
+                        },
+                        {
+                            category: "Grade 7",
+                            image: "https://images.unsplash.com/photo-1516962080544-eac695c93791",
+                            alt: "Literature Set",
+                            title: "Literature Analysis Kit",
+                            description: "Advanced reading materials",
+                            price: "KES 79.99"
+                        },
+                        {
+                            category: "Grade 8",
+                            image: "https://images.unsplash.com/photo-1503676260728-1c00da09c228",
+                            alt: "History Kit",
+                            title: "World History Set",
+                            description: "Comprehensive history materials",
+                            price: "KES 89.99"
+                        },
+                        {
+                            category: "Grade 9",
+                            image: "https://images.unsplash.com/photo-1456735190827-d1262f71b8a3",
+                            alt: "Geography Set",
+                            title: "Advanced Geography Kit",
+                            description: "Complete geography tools",
+                            price: "KES 94.99"
+                        },
+                        {
+                            category: "High School",
+                            image: "https://images.unsplash.com/photo-1528938102132-4a9276b8e320",
+                            alt: "Science Set",
+                            title: "Advanced Science Kit",
+                            description: "Complete lab equipment",
+                            price: "KES 249.99"
+                        }
+                    ];
+
+                    const page3Products = [
+                        {
+                            category: "High School",
+                            image: "https://images.unsplash.com/photo-1532012197267-da84d127e765",
+                            alt: "Advanced Lab Kit",
+                            title: "Professional Lab Equipment",
+                            description: "Complete scientific lab setup",
+                            price: "KES 299.99"
+                        },
+                        {
+                            category: "Grade 9",
+                            image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c",
+                            alt: "Computer Science Kit",
+                            title: "Coding Starter Pack",
+                            description: "Programming learning materials",
+                            price: "KES 199.99"
+                        },
+                        {
+                            category: "High School",
+                            image: "https://images.unsplash.com/photo-1568205612837-a1b3a87128b8",
+                            alt: "Research Kit",
+                            title: "Research Methods Set",
+                            description: "Scientific research tools",
+                            price: "KES 259.99"
+                        },
+                        {
+                            category: "Grade 8",
+                            image: "https://images.unsplash.com/photo-1535572290543-960a8046f5af",
+                            alt: "Language Lab",
+                            title: "Advanced Language Lab",
+                            description: "Complete language learning system",
+                            price: "KES 179.99"
+                        },
+                        {
+                            category: "Grade 9",
+                            image: "https://images.unsplash.com/photo-1516962080544-eac695c93791",
+                            alt: "Tech Kit",
+                            title: "Technology Learning Kit",
+                            description: "Modern tech education tools",
+                            price: "KES 289.99"
+                        },
+                        {
+                            category: "High School",
+                            image: "https://images.unsplash.com/photo-1503676260728-1c00da09c228",
+                            alt: "Engineering Kit",
+                            title: "Engineering Basics Set",
+                            description: "Introductory engineering tools",
+                            price: "KES 349.99"
+                        },
+                        {
+                            category: "Grade 8",
+                            image: "https://images.unsplash.com/photo-1456735190827-d1262f71b8a3",
+                            alt: "Music Kit",
+                            title: "Music Theory Pack",
+                            description: "Complete music education set",
+                            price: "KES 159.99"
+                        },
+                        {
+                            category: "Grade 9",
+                            image: "https://images.unsplash.com/photo-1528938102132-4a9276b8e320",
+                            alt: "Art Studio Kit",
+                            title: "Advanced Art Studio",
+                            description: "Professional art supplies",
+                            price: "KES 229.99"
+                        },
+                        {
+                            category: "Grade 8",
+                            image: "https://images.unsplash.com/photo-1456735190827-d1262f71b8a3",
+                            alt: "Music Kit",
+                            title: "Music Theory Pack",
+                            description: "Complete music education set",
+                            price: "KES 159.99"
+                        },
+                        {
+                            category: "Grade 9",
+                            image: "https://images.unsplash.com/photo-1528938102132-4a9276b8e320",
+                            alt: "Art Studio Kit",
+                            title: "Advanced Art Studio",
+                            description: "Professional art supplies",
+                            price: "KES 229.99"
+                        }
+                    ];
+
+                    paginationButtons.forEach(button => {
+                        button.addEventListener('click', function() {
+                            paginationButtons.forEach(btn => btn.classList.remove('active'));
+                            this.classList.add('active');
+
+                            let productsToShow;
+                            if (this.textContent === '2') {
+                                productsToShow = page2Products;
+                            } else if (this.textContent === '3') {
+                                productsToShow = page3Products;
+                            }
+
+                            if (productsToShow) {
+                                productCards.forEach((card, index) => {
+                                    if (index < productsToShow.length) {
+                                        const product = productsToShow[index];
+                                        card.querySelector('.category-tag').textContent = product.category;
+                                        card.querySelector('img').src = product.image;
+                                        card.querySelector('img').alt = product.alt;
+                                        card.querySelector('h3').textContent = product.title;
+                                        card.querySelector('p').textContent = product.description;
+                                        card.querySelector('.price').textContent = product.price;
+                                    }
+                                });
+                            }
+                        });
+                    });
+                });
+            </script>
+            
+        </div>
+
+        <div class="pagination">
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+        </div>
+    </div>
+</body>
+    <footer>
+        <style>
+            footer {
+                background: #622C84;
+                color: white;
+                padding: 4rem 2rem;
+                margin-top: 3rem;
+            }
+
+            .footer-container {
+                max-width: 1200px;
+                margin: 0 auto;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 3rem;
+            }
+
+            .footer-section h3 {
+                font-size: 1.2rem;
+                margin-bottom: 1.5rem;
+                color: #FFC107;
+            }
+
+            .footer-section p, .footer-section a {
+                margin-bottom: 0.8rem;
+                color: #fff;
+                text-decoration: none;
+                display: block;
+                transition: color 0.3s;
+            }
+
+            .footer-section a:hover {
+                color: #FFC107;
+            }
+
+            .contact-form {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .contact-form input, 
+            .contact-form textarea {
+                padding: 0.8rem;
+                border: none;
+                border-radius: 4px;
+                background: rgba(255, 255, 255, 0.1);
+                color: white;
+            }
+
+            .contact-form input::placeholder,
+            .contact-form textarea::placeholder {
+                color: rgba(255, 255, 255, 0.7);
+            }
+
+            .contact-form button {
+                padding: 0.8rem;
+                background: #FFC107;
+                border: none;
+                border-radius: 4px;
+                color: #622C84;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background-color 0.3s;
+            }
+
+            .contact-form button:hover {
+                background: #ffcd38;
+            }
+
+            .social-links {
+                display: flex;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+
+            .social-links a {
+                background: rgba(255, 255, 255, 0.1);
+                padding: 0.5rem;
+                border-radius: 50%;
+                width: 35px;
+                height: 35px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .copyright {
+                text-align: center;
+                margin-top: 3rem;
+                padding-top: 2rem;
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
+            }
+        </style>
+
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About My Bidhaa</h3>
+                <p>Your trusted marketplace for educational resources and stationery supplies. We connect students, teachers, and professionals with quality products.</p>
+                <div class="social-links">
+                    <a href="#"><span>FB</span></a>
+                    <a href="#"><span>TW</span></a>
+                    <a href="#"><span>IG</span></a>
+                    <a href="#"><span>LI</span></a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="#">About Us</a>
+                <a href="#">Our Products</a>
+                <a href="#">Services</a>
+                <a href="#">Blog</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Information</h3>
+                <p>Longhorn Publishers, Funzi Road</p>
+                <p>Nairobi, Kenya</p>
+                <p>Phone: +254 797 100 500</p>
+                <p>Email: hello@mybidhaa.com</p>
+                <!-- <p>Hours: Mon-Fri 8:00 AM - 6:00 PM</p> -->
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="4" required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>&copy; 2023 My Bidhaa Marketplace. All rights reserved.</p>
+        </div>
+    </footer>
+
+</html>

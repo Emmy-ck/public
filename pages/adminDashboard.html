@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="logo.png" alt="Multikart">
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li class="has-submenu">
+                    <a href="#"><i class="fas fa-box"></i> Products</a>
+                    <ul class="submenu">
+                        <li>Physical</li>
+                        <li>Digital</li>
+                        <li>Product Review</li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+                <li><a href="#"><i class="fas fa-chart-line"></i> Sales</a></li>
+                <li><a href="#"><i class="fas fa-ticket"></i> Coupons</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Users</a></li>
+                <li><a href="#"><i class="fas fa-store"></i> Vendors</a></li>
+                <!-- Add other menu items -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="header-right">
+                    <div class="language-selector">
+                        <select>
+                            <option>English</option>
+                            <option>Spanish</option>
+                            <option>Portuguese</option>
+                            <option>French</option>
+                        </select>
+                    </div>
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </div>
+                    <div class="user-profile">
+                        <img src="assets/images/dashboard/user.jpg" alt="User">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <div class="breadcrumb">
+                    <span>Users</span> / <span>User List</span>
+                </div>
+
+                <div class="action-bar">
+                    <button class="create-user-btn">Create User</button>
+                </div>
+
+                <!-- User Table -->
+                <div class="table-container">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox"></th>
+                                <th>Avatar</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Last Login</th>
+                                <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Table rows will be dynamically populated -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

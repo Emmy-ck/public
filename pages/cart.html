@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                                      <img src="./public/images/Logo.jpeg" alt="" style="width: 200px; height: auto;">
+
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="./products.html">Products</a></li>
+                    <li><a href="./services.html">Services</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <a href="#login" class="login-btn">Login</a>
+                <a href="#signup" class="signup-btn">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo h1 {
+            color: #622C84;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #622C84;
+        }
+
+        .header-right a {
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .login-btn {
+            color: #622C84;
+            border: 2px solid #622C84;
+            margin-right: 1rem;
+        }
+
+        .signup-btn {
+            background: #622C84;
+            color: white;
+        }
+
+        .login-btn:hover {
+            background: #622C84;
+            color: white;
+        }
+
+        .signup-btn:hover {
+            background: #4a2163;
+        }
+
+        footer {
+            background: #622C84;
+            color: white;
+            padding: 4rem 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Cart specific styles */
+        .cart-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .cart-title {
+            color: #622C84;
+            margin-bottom: 2rem;
+        }
+
+        .cart-items {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-right: 1rem;
+        }
+
+        .item-details {
+            flex-grow: 1;
+        }
+
+        .item-price {
+            color: #622C84;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 0 2rem;
+        }
+
+        .quantity-controls button {
+            background: #622C84;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .remove-item {
+            color: #ff4444;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .cart-summary {
+            margin-top: 2rem;
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .checkout-btn {
+            background: #622C84;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .checkout-btn:hover {
+            background: #4a2163;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+        }
+    </style>
+
+    <div class="cart-container">
+        <h1 class="cart-title">Your Shopping Cart</h1>
+        
+        <div id="cart-items" class="cart-items">
+            <!-- Cart items will be dynamically inserted here -->
+        </div>
+
+        <div id="cart-summary" class="cart-summary">
+            <h2>Order Summary</h2>
+            <div style="margin: 1rem 0;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Subtotal</span>
+                    <span id="subtotal">KES0.00</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Shipping</span>
+                    <span id="shipping">KES5.00</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-weight: bold; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee;">
+                    <span>Total</span>
+                    <span id="total">KES0.00</span>
+                </div>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <footer>
+        <!-- Footer content -->
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        function displayCart() {
+            const cartContainer = document.getElementById('cart-items');
+            
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<div class="empty-cart">Your cart is empty</div>';
+                updateCartSummary();
+                return;
+            }
+
+            cartContainer.innerHTML = cart.map((item, index) => `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="KES{item.title}">
+                    <div class="item-details">
+                        <h3>${item.title}</h3>
+                        <p>${item.description}</p>
+                        <span class="item-price">KESKES{(item.price * item.quantity).toFixed(2)}</span>
+                    </div>
+                    <div class="quantity-controls">
+                        <button onclick="updateQuantity(KES{index}, -1)">-</button>
+                        <span>KES{item.quantity}</span>
+                        <button onclick="updateQuantity(KES{index}, 1)">+</button>
+                    </div>
+                    <span class="remove-item" onclick="removeItem(KES{index})">✕</span>
+                </div>
+            `).join('');
+
+            updateCartSummary();
+        }
+
+        function updateQuantity(index, change) {
+            if (cart[index].quantity + change > 0) {
+                cart[index].quantity += change;
+                localStorage.setItem('cart', JSON.stringify(cart));
+                displayCart();
+            }
+        }
+
+        function removeItem(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            displayCart();
+        }
+
+        function updateCartSummary() {
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const shipping = cart.length > 0 ? 5.00 : 0;
+            const total = subtotal + shipping;
+
+            document.getElementById('subtotal').textContent = `KESKES{subtotal.toFixed(2)}`;
+            document.getElementById('shipping').textContent = `KESKES{shipping.toFixed(2)}`;
+            document.getElementById('total').textContent = `KESKES{total.toFixed(2)}`;
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+            // Add checkout logic here
+            alert('Proceeding to checkout...');
+        }
+
+        // Initialize cart display
+        displayCart();
+    </script>
+</body>
+</html>

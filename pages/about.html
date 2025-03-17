@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                                      <img src="./public/images/Logo.jpeg" alt="" style="width: 200px; height: auto;">
+
+            </div>
+            <nav> 
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="./products.html">Products</a></li>
+                    <li><a href="./services.html">Services</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <a href="#login" class="login-btn">Login</a>
+                <a href="#signup" class="signup-btn">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo h1 {
+            color: #622C84;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #622C84;
+        }
+
+        .header-right a {
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .login-btn {
+            color: #622C84;
+            margin-right: 1rem;
+        }
+
+        .signup-btn {
+            background: #622C84;
+            color: white;
+        }
+
+        .coming-soon-container {
+            min-height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .coming-soon {
+            font-size: 4rem;
+            color: #622C84;
+            text-align: center;
+            animation: bounce 2s infinite;
+            text-shadow: 3px 3px #FFC107;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        footer {
+            background: #622C84;
+            color: white;
+            padding: 2rem 5%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+    </style>
+
+    <main class="coming-soon-container">
+        <h1 class="coming-soon">Coming Soon!</h1>
+    </main>
+
+    <footer>
+        <p>© 2023 My Bidhaa. All rights reserved.</p>
+        <p>Connect with us on social media</p>
+    </footer>
+        
+</body>
+</html>

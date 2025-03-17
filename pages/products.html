@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                 <img src="../images/Logo.jpeg" alt="" style="width: 200px; height: auto;">
+
+            </div>
+            <nav> 
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                    <li><a href="./products.html">Products</a></li>
+                    <li><a href="./services.html">Services</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-right">
+                <a href="#login" class="login-btn">Login</a>
+                <a href="#signup" class="signup-btn">Sign Up</a>
+            </div>
+        </div>
+    </header>
+    <div class="products-container">
+        <div class="search-filter">
+            <input type="text" id="searchInput" class="search-bar" placeholder="Search products...">
+            <select class="filter-select" id="categoryFilter">
+                <option value="">All Categories</option>
+                <option value="Lab Equipment">Lab Equipment</option>
+                <option value="Books">Books</option>
+                <option value="Tutors">Tutors</option>
+                <option value="Stationery">Stationery</option>
+            </select>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- Page 1 Products -->
+        </div>
+
+        <div class="pagination">
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+        </div>
+    </div>
+
+    <script>
+        const allProducts = {
+            page1: [
+                {
+                    category: "Lab Equipment",
+                    image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d",
+                    title: "Basic Microscope",
+                    description: "Student microscope kit",
+                    price: "KES 15,000"
+                },
+                {
+                    category: "Books",
+                    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6",
+                    title: "Chemistry Textbook",
+                    description: "Grade 8 Chemistry",
+                    price: "KES 1,200"
+                },
+                {
+                    category: "Tutors",
+                    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2",
+                    title: "Math Tutor - John",
+                    description: "5 years experience",
+                    price: "KES 800/hr"
+                },
+                {
+                    category: "Lab Equipment",
+                    image: "https://images.unsplash.com/photo-1582719471384-894fbb16e074",
+                    title: "Chemistry Kit",
+                    description: "Basic lab essentials",
+                    price: "KES 8,500"
+                },
+                {
+                    category: "Books",
+                    image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c",
+                    title: "Biology Set",
+                    description: "3 Biology textbooks",
+                    price: "KES 2,500"
+                },
+                {
+                    category: "Tutors",
+                    image: "https://images.unsplash.com/photo-1590650153855-d9e808231d41",
+                    title: "Physics Tutor - Jane",
+                    description: "BSc Physics",
+                    price: "KES 1,000/hr"
+                },
+                {
+                    category: "Stationery",
+                    image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338",
+                    title: "Premium Pen Set",
+                    description: "12 colored pens",
+                    price: "KES 450"
+                },
+                {
+                    category: "Lab Equipment",
+                    image: "https://images.unsplash.com/photo-1576086213369-97a306d36557",
+                    title: "Digital Scale",
+                    description: "High precision",
+                    price: "KES 12,000"
+                }
+            ],
+            page2: [
+                {
+                    category: "Books",
+                    image: "https://images.unsplash.com/photo-1516979187457-637abb4f9353",
+                    title: "Physics Set",
+                    description: "Complete physics series",
+                    price: "KES 3,500"
+                },
+                {
+                    category: "Stationery",
+                    image: "https://images.unsplash.com/photo-1568205612837-a1b3a87128b8",
+                    title: "Geometry Set",
+                    description: "Mathematical instruments",
+                    price: "KES 350"
+                },
+                {
+                    category: "Lab Equipment",
+                    image: "https://images.unsplash.com/photo-1581093458791-9d42cc05b6ee",
+                    title: "Test Tubes Set",
+                    description: "Pack of 12",
+                    price: "KES 2,000"
+                },
+                {
+                    category: "Tutors",
+                    image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e",
+                    title: "Chemistry Tutor - Sarah",
+                    description: "MSc Chemistry",
+                    price: "KES 1,200/hr"
+                },
+                {
+                    category: "Books",
+                    image: "https://images.unsplash.com/photo-1553729459-efe14ef6055d",
+                    title: "English Literature",
+                    description: "Advanced level",
+                    price: "KES 1,800"
+                },
+                {
+                    category: "Stationery",
+                    image: "https://images.unsplash.com/photo-1558498619-f796f055cde3",
+                    title: "Calculator",
+                    description: "Scientific calculator",
+                    price: "KES 1,500"
+                },
+                {
+                    category: "Lab Equipment",
+                    image: "https://images.unsplash.com/photo-1581092921461-eab62e97a780",
+                    title: "Bunsen Burner",
+                    description: "Lab standard",
+                    price: "KES 3,000"
+                },
+                {
+                    category: "Books",
+                    image: "https://images.unsplash.com/photo-1456735190827-d1262f71b8a3",
+                    title: "Geography Atlas",
+                    description: "World maps collection",
+                    price: "KES 2,200"
+                }
+            ],
+            page3: [
+                {
+                    category: "Tutors",
+                    image: "https://images.unsplash.com/photo-1573496799652-408c2ac9fe98",
+                    title: "Biology Tutor - Mark",
+                    description: "PhD candidate",
+                    price: "KES 1,500/hr"
+                },
+                {
+                    category: "Lab Equipment",
+                    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789",
+                    title: "Lab Goggles",
+                    description: "Safety equipment",
+                    price: "KES 800"
+                },
+                {
+                    category: "Stationery",
+                    image: "https://images.unsplash.com/photo-1568205612837-a1b3a87128b8",
+                    title: "Art Supplies Set",
+                    description: "Complete art kit",
+                    price: "KES 3,500"
+                },
+                {
+                    category: "Books",
+                    image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c",
+                    title: "Computer Science",
+                    description: "Programming basics",
+                    price: "KES 2,800"
+                }
+            ],
+            page4: [
+                {
+                    category: "Lab Equipment",
+                    image: "https://images.unsplash.com/photo-1581093458791-9d42cc05b6ee",
+                    title: "Microscope Slides",
+                    description: "100 pieces pack",
+                    price: "KES 1,200"
+                },
+                {
+                    category: "Stationery",
+                    image: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338",
+                    title: "Notebook Set",
+                    description: "5 premium notebooks",
+                    price: "KES 750"
+                },
+                {
+                    category: "Books",
+                    image: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6",
+                    title: "Math Workbook",
+                    description: "Practice exercises",
+                    price: "KES 900"
+                },
+                {
+                    category: "Tutors",
+                    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2",
+                    title: "Geography Tutor - Tom",
+                    description: "3 years experience",
+                    price: "KES 900/hr"
+                }
+            ]
+        };
+
+        function displayProducts(products) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+            
+            products.forEach(product => {
+                const card = `
+                    <div class="product-card">
+                        <span class="category-tag">${product.category}</span>
+                        <img src="${product.image}" alt="${product.title}">
+                        <h3>${product.title}</h3>
+                        <p>${product.description}</p>
+                        <div class="price">${product.price}</div>
+                        <div class="cart-icon">${product.category === 'Tutors' ? '📞' : '🛒'}</div>
+                    </div>
+                `;
+                grid.innerHTML += card;
+            });
+        }
+
+        // Initial display
+        displayProducts(allProducts.page1);
+
+        // Search and filter functionality
+        const searchInput = document.getElementById('searchInput');
+        const categoryFilter = document.getElementById('categoryFilter');
+
+        function filterProducts() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedCategory = categoryFilter.value;
+            
+            let allPagesProducts = [...allProducts.page1, ...allProducts.page2, ...allProducts.page3, ...allProducts.page4];
+            
+            const filtered = allPagesProducts.filter(product => {
+                const matchesSearch = product.title.toLowerCase().includes(searchTerm) || 
+                                    product.description.toLowerCase().includes(searchTerm);
+                const matchesCategory = selectedCategory === '' || product.category === selectedCategory;
+                
+                return matchesSearch && matchesCategory;
+            });
+            
+            displayProducts(filtered);
+        }
+
+        searchInput.addEventListener('input', filterProducts);
+        categoryFilter.addEventListener('change', filterProducts);
+
+        // Pagination
+        const paginationButtons = document.querySelectorAll('.pagination button');
+        paginationButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                paginationButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const pageNumber = index + 1;
+                const pageProducts = allProducts[`page${pageNumber}`];
+                if (pageProducts) {
+                    displayProducts(pageProducts);
+                }
+            });
+        });
+    </script>
+
+    <style>
+        .products-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            padding: 0.8rem;
+            position: relative;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .product-card h3 {
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+        }
+
+        .product-card p {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .price {
+            font-size: 0.9rem;
+            color: #622C84;
+            font-weight: bold;
+        }
+
+        .cart-icon {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: #FFC107;
+            padding: 0.3rem;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .category-tag {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.4rem;
+            background: #622C84;
+            color: white;
+            border-radius: 4px;
+        }
+    </style>
+
+
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo h1 {
+            color: #622C84;
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #622C84;
+        }
+
+        .header-right a {
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .login-btn {
+            color: #622C84;
+            margin-right: 1rem;
+        }
+
+        .signup-btn {
+            background: #622C84;
+            color: white;
+        }
+
+        .coming-soon-container {
+            min-height: 70vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .coming-soon {
+            font-size: 4rem;
+            color: #622C84;
+            text-align: center;
+            animation: bounce 2s infinite;
+            text-shadow: 3px 3px #FFC107;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        footer {
+            background: #622C84;
+            color: white;
+            padding: 2rem 5%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+    </style>
+
+    <main class="coming-soon-container">
+        <h1 class="coming-soon">Coming Soon!</h1>
+    </main>
+
+    <footer>
+        <p>© 2023 My Bidhaa. All rights reserved.</p>
+        <p>Connect with us on social media</p>
+    </footer>
+        
+</body>
+</html>
